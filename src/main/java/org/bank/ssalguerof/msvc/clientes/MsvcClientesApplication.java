@@ -63,9 +63,10 @@ public class MsvcClientesApplication  implements CommandLineRunner {
 		productoFlux.subscribe(producto-> log.info("Insert: "+ producto.toString()));
 
 		//Carga de Clientes
-		Flux<Customer> clientesGuardados = Flux.just(new Customer(null, "1", "Personal", "Juan", "Pérez", "García", "1", "DNI", "12345678", "juan@example.com", "999888777", null),
-						new Customer(null, "2", "Empresarial", "Empresa ABC", null, null, "2", "RUC", "876543211235", "empresa@example.com", "987654321", null),
-						new Customer(null, "1", "Personal", "Carlos", "Pérez", "García", "1", "DNI", "12225678", "carlos@example.com", "933888777", null)
+		Flux<Customer> clientesGuardados = Flux.just(new Customer(null, "1", "Personal", "Juan", "Pérez", "García", "1", "DNI", "12345678", "juan@example.com", "999888777", null,null),
+						new Customer(null, "2", "Empresarial", "Empresa ABC", null, null, "2", "RUC", "876543211235", "empresa@example.com", "987654321", null,null),
+						new Customer(null, "1", "Personal", "Carlos", "Pérez", "García", "1", "DNI", "12225678", "carlos@example.com", "933888777", null, null),
+						new Customer(null, "1", "Personal", "Saul", "Salguero", "Florez", "1", "DNI", "45486325", "carlos@example.com", "933883377", null, null)
 				)
 				.flatMap(cliente -> {
 					cliente.setFecRegistro(new Date());
@@ -80,11 +81,15 @@ public class MsvcClientesApplication  implements CommandLineRunner {
 		clientesGuardados.flatMap(cliente -> {
 					CustomerProduct productoCliente = null;
 					if(cliente.getNumDocumento().equals("12345678")){
-						productoCliente = new CustomerProduct(null,"1234567890", "9876543210987654",cliente.getId(), cliente.getCodTipoCliente(), "CTAAHO", "Cuenta de Ahorro","A", "Activo", new Date(),new AccountData(5000.0),null,null,null,null,null, Arrays.asList(new Customer(cliente.getId(), null,null,cliente.getNombre(),cliente.getApePaterno(),cliente.getApeMaterno(),cliente.getCodTipoDocumento(), cliente.getDescTipoDocumento(), cliente.getNumDocumento(), cliente.getEmail(), null, null)));
+						productoCliente = new CustomerProduct(null,"1234567890", "9876543210987654",cliente.getId(), cliente.getCodTipoCliente(), "CTAAHO", "Cuenta de Ahorro","A", "Activo", new Date(),new AccountData(5000.0),null,null,null,null,null, Arrays.asList(new Customer(cliente.getId(), null,null,cliente.getNombre(),cliente.getApePaterno(),cliente.getApeMaterno(),cliente.getCodTipoDocumento(), cliente.getDescTipoDocumento(), cliente.getNumDocumento(), cliente.getEmail(), null, null,"1")), Arrays.asList(new Transaction("DEPCTA","DEPOSITO CUENTA",5000.0, new Date())));
 						return productoClienteDao.save(productoCliente);
 					}
 					if(cliente.getNumDocumento().equals("876543211235")){
-						productoCliente = new CustomerProduct(null,"1234567890", "8765432109876543",cliente.getId(), cliente.getCodTipoCliente(), "CREEMP", "Crédito Empresarial","P", "Pasivo", new Date(),null,null,null,new CreditData(10000.0,8000.0, 2,12),null,null, Arrays.asList(new Customer(Titular.getId(), null,null,Titular.getNombre(),Titular.getApePaterno(),Titular.getApeMaterno(),Titular.getCodTipoDocumento(), Titular.getDescTipoDocumento(), Titular.getNumDocumento(), Titular.getEmail(), null, null)));
+						productoCliente = new CustomerProduct(null,"1234567890", "8765432109876543",cliente.getId(), cliente.getCodTipoCliente(), "CREEMP", "Crédito Empresarial","P", "Pasivo", new Date(),null,null,null,new CreditData(10000.0,10000.0, 0,12),null,null, Arrays.asList(new Customer(Titular.getId(), null,null,Titular.getNombre(),Titular.getApePaterno(),Titular.getApeMaterno(),Titular.getCodTipoDocumento(), Titular.getDescTipoDocumento(), Titular.getNumDocumento(), Titular.getEmail(), null, null,"1")), null);
+						return productoClienteDao.save(productoCliente);
+					}
+					if(cliente.getNumDocumento().equals("45486325")){
+						productoCliente = new CustomerProduct(null,"1256567890", "8745434355876543",cliente.getId(), cliente.getCodTipoCliente(), "CREPER", "Crédito Personal","P", "Pasivo", new Date(),null,null,null,null,new CreditData(10000.0,10000.0, 0,12),null, Arrays.asList(new Customer(cliente.getId(), null,null,cliente.getNombre(),cliente.getApePaterno(),cliente.getApeMaterno(),cliente.getCodTipoDocumento(), cliente.getDescTipoDocumento(), cliente.getNumDocumento(), cliente.getEmail(), null, null,"1")), null);
 						return productoClienteDao.save(productoCliente);
 					}
 					return Mono.empty();

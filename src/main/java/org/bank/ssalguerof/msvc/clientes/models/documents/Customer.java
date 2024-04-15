@@ -26,5 +26,6 @@ public class Customer {
     private String email;
     private String telefono;
     private Date   fecRegistro;
+    private String indFirmanteAuto;
 
 }
