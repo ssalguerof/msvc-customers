@@ -11,7 +11,7 @@
 	<groupId>org.bank.ssalguerof.msvc.clientes</groupId>
 	<artifactId>msvc-customers</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>msvc-clientes</name>
+	<name>msvc-customers</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
@@ -61,6 +61,23 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.3.1</version>
+				<executions>
+					<execution>
+						<id>verify-style</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<configLocation>google_checks.xml</configLocation>
 				</configuration>
 			</plugin>
 		</plugins>
