@@ -122,10 +122,10 @@ public class MsvcClientesApplication implements CommandLineRunner {
     clientesGuardados.flatMap(cliente -> {
       CustomerProduct productoCliente = null;
       if (cliente.getNumDocumento().equals("12345678")) {
-        productoCliente = new CustomerProduct(null, "1234567890",
+        productoCliente = new CustomerProduct(null, "12376567890",
           "9876543210987654", cliente.getId(), cliente.getCodTipoCliente(),
           "CTAAHO", "Cuenta de Ahorro", "A",
-          "Activo", new Date(), new AccountData(5000.0),
+          "Activo", new Date(), new AccountData(9000.0, 3),
           null, null, null,
           null, null, Arrays.asList(
             new Customer(cliente.getId(), null, null,
@@ -134,11 +134,20 @@ public class MsvcClientesApplication implements CommandLineRunner {
               cliente.getNumDocumento(), cliente.getEmail(), null,
               null, "1")), Arrays.asList(
                 new Transaction("DEPCTA",
-                  "DEPOSITO CUENTA", 5000.0, new Date())));
+                  "DEPOSITO CUENTA", 5000.0, new Date(), "TRDEPBAN",
+                  "Depósito en banco", "1"),
+                new Transaction("DEPCTA",
+                  "DEPOSITO CUENTA", 5000.0, new Date(), "TRDEPCAJ",
+                  "Depósito en cajero automático", "1"),
+                new Transaction("RETCTA",
+                  "RETIRO CUENTA", 1000.0, new Date(), "TRBANCTA",
+                  "Transferencia bancaria entre cuentas", "1")
+
+          ));
         return productoClienteDao.save(productoCliente);
       }
       if (cliente.getNumDocumento().equals("876543211235")) {
-        productoCliente = new CustomerProduct(null, "1234567890",
+        /*productoCliente = new CustomerProduct(null, "1234567890",
           "8765432109876543", cliente.getId(), cliente.getCodTipoCliente(),
           "CREEMP", "Crédito Empresarial", "P",
           "Pasivo", new Date(), null, null,
@@ -149,10 +158,27 @@ public class MsvcClientesApplication implements CommandLineRunner {
             titular.getCodTipoDocumento(), titular.getDescTipoDocumento(),
             titular.getNumDocumento(), titular.getEmail(), null,
             null, "1")), null);
+
+        */
+
+        productoCliente = new CustomerProduct(null, "12388867890",
+          "8765456709876543", cliente.getId(), cliente.getCodTipoCliente(),
+          "CTACOR", "Cuenta Corriente", "A",
+          "Activo", new Date(), null, new AccountData(1000.0, 1),
+          null, null, null, null,
+          Arrays.asList(new Customer(titular.getId(), null, null,
+            titular.getNombre(), titular.getApePaterno(), titular.getApeMaterno(),
+            titular.getCodTipoDocumento(), titular.getDescTipoDocumento(),
+            titular.getNumDocumento(), titular.getEmail(), null,
+            null, "1")), Arrays.asList(new Transaction("DEPCTA",
+          "DEPOSITO CUENTA", 1000.0, new Date(), "TRDEPBAN",
+          "Depósito en banco", "1")));
+
         return productoClienteDao.save(productoCliente);
+
       }
       if (cliente.getNumDocumento().equals("45486325")) {
-        productoCliente = new CustomerProduct(null, "1256567890",
+        productoCliente = new CustomerProduct(null, "12333567890",
           "8745434355876543", cliente.getId(), cliente.getCodTipoCliente(),
           "CREPER", "Crédito Personal", "P",
           "Pasivo", new Date(), null, null,
@@ -165,6 +191,8 @@ public class MsvcClientesApplication implements CommandLineRunner {
           null, null, "1")), null);
         return productoClienteDao.save(productoCliente);
       }
+
+
       return Mono.empty();
 
     })

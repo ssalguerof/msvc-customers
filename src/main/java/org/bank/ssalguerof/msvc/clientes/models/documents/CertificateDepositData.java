@@ -15,5 +15,5 @@ import lombok.NoArgsConstructor;
 public class CertificateDepositData {
   private Double monto;
   private Date fecVencimiento;
-
+  private Integer cantMovimientos;
 }
