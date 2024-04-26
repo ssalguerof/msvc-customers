@@ -183,7 +183,7 @@ public class MsvcClientesApplication implements CommandLineRunner {
           "CREPER", "Crédito Personal", "P",
           "Pasivo", new Date(), null, null,
           null, null, new CreditData(
-            10000.0, 10000.0, 0, 12),
+            10000.0, 10000.0, 0, 12, 0.6,new Date(), false),
           null, Arrays.asList(new Customer(cliente.getId(),
           null, null, cliente.getNombre(), cliente.getApePaterno(),
           cliente.getApeMaterno(), cliente.getCodTipoDocumento(),

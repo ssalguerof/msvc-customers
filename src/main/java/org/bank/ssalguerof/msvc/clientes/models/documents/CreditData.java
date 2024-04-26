@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 /**
  * Clase que representa la información de un crédito, ya sea empresarial o personal.
  */
@@ -16,5 +18,8 @@ public class CreditData {
   private Integer cuotasPagadas;    // Número de cuotas pagadas
   private Integer cuotasTotales;    // Número total de cuotas del crédito
 
+  private Double tasaInteres;       // Tasa de interés del crédito
+  private Date fechaVencimiento;    // Fecha de vencimiento del crédito
+  private boolean indVencido;       // Indica si el crédito está vencido
   // Métodos getter y setter generados automáticamente por Lombok
 }
