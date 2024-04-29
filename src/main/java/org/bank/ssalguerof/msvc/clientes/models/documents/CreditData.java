@@ -1,10 +1,9 @@
 package org.bank.ssalguerof.msvc.clientes.models.documents;
 
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Date;
 
 /**
  * Clase que representa la información de un crédito, ya sea empresarial o personal.
@@ -20,6 +19,6 @@ public class CreditData {
 
   private Double tasaInteres;       // Tasa de interés del crédito
   private Date fechaVencimiento;    // Fecha de vencimiento del crédito
-  private boolean indVencido;       // Indica si el crédito está vencido
+  private String indVencido;       // Indica si el crédito está vencido
   // Métodos getter y setter generados automáticamente por Lombok
 }

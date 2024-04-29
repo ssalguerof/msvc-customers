@@ -137,7 +137,7 @@ public class MsvcClientesApplication implements CommandLineRunner {
                   "DEPOSITO CUENTA", 5000.0, new Date(), "TRDEPBAN",
                   "Depósito en banco", "1"),
                 new Transaction("DEPCTA",
-                  "DEPOSITO CUENTA", 5000.0, new Date(), "TRDEPCAJ",
+                  "DEPOSITO CUENTA", 5001.0, new Date(), "TRDEPCAJ",
                   "Depósito en cajero automático", "1"),
                 new Transaction("RETCTA",
                   "RETIRO CUENTA", 1000.0, new Date(), "TRBANCTA",
@@ -183,7 +183,7 @@ public class MsvcClientesApplication implements CommandLineRunner {
           "CREPER", "Crédito Personal", "P",
           "Pasivo", new Date(), null, null,
           null, null, new CreditData(
-            10000.0, 10000.0, 0, 12, 0.6,new Date(), false),
+            10000.0, 10000.0, 0, 12, 0.6,new Date(), "1"),
           null, Arrays.asList(new Customer(cliente.getId(),
           null, null, cliente.getNombre(), cliente.getApePaterno(),
           cliente.getApeMaterno(), cliente.getCodTipoDocumento(),
