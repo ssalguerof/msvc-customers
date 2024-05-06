@@ -6,6 +6,8 @@ WORKDIR /opt
 
 ADD *.jar /opt/
 
+RUN ./mvnw clean package -DskipTests
+
 ENTRYPOINT ["sh", "-c"]
 CMD ["exec java -Duser.timezone=America/Lima \
         -jar *.jar"]
