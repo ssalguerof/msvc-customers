@@ -1,11 +1,12 @@
-FROM openjdk:8-jre-alpine
+FROM openjdk:8-alpine
 
-# Create app directory
-RUN mkdir -p /opt/logs
-WORKDIR /opt
+WORKDIR /app
 
-ADD *.jar /opt/
+COPY . .
 
-ENTRYPOINT ["sh", "-c"]
-CMD ["exec java -Duser.timezone=America/Lima \
-        -jar *.jar"]
+RUN sed -i -e 's/\r$//' ./mvnw
+RUN ./mvnw clean package -DskipTests
+
+EXPOSE 8001
+
+ENTRYPOINT ["java", "-jar", "./target/msvc-customers-0.0.1-SNAPSHOT.jar"]
