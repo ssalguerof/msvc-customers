@@ -25,8 +25,8 @@ import reactor.core.publisher.Mono;
  * Clase principal de la aplicación que inicia el servicio de gestión de clientes y productos.
  */
 @SpringBootApplication
-public class MsvcClientesApplication /*implements CommandLineRunner*/ {
-  /*
+public class MsvcClientesApplication implements CommandLineRunner {
+
   @Autowired
   private ReactiveMongoTemplate mongoTemplate;
   @Autowired
@@ -35,13 +35,13 @@ public class MsvcClientesApplication /*implements CommandLineRunner*/ {
   private CustomerDao clienteDao;
   @Autowired
   private CustomerProductDao productoClienteDao;
-  private static final Logger log = LoggerFactory.getLogger(MsvcClientesApplication.class);*/
+  private static final Logger log = LoggerFactory.getLogger(MsvcClientesApplication.class);
 
   public static void main(String[] args) {
     SpringApplication.run(MsvcClientesApplication.class, args);
   }
 
-  /*@Override
+  @Override
   public void run(String... args) throws Exception {
     // Eliminar colecciones existentes para iniciar con datos limpios
     mongoTemplate.dropCollection("clientes").subscribe();
@@ -160,7 +160,7 @@ public class MsvcClientesApplication /*implements CommandLineRunner*/ {
             null, "1")), null);
 
         */
-        /*
+
         productoCliente = new CustomerProduct(null, "12388867890",
           "8765456709876543", cliente.getId(), cliente.getCodTipoCliente(),
           "CTACOR", "Cuenta Corriente", "A",
@@ -199,5 +199,5 @@ public class MsvcClientesApplication /*implements CommandLineRunner*/ {
         .subscribe(cliente -> log.info("Insert: " + cliente.toString()));
 
 
-  }*/
+  }
 }
