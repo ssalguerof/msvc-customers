@@ -1,4 +1,7 @@
-on: push
+on:
+  push:
+    branches:
+      - v2.0
 name: deploy
 jobs:
   build-and-push:

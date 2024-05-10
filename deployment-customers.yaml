@@ -13,7 +13,7 @@ spec:
         app: msvc-customers
     spec:
       containers:
-        - image: ssalguerof/msvc-customers:main
+        - image: ssalguerof/msvc-customers:v2.0
           name: customers
           ports:
             - containerPort: 8001
