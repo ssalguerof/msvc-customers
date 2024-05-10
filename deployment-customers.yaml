@@ -17,3 +17,7 @@ spec:
           name: customers
           ports:
             - containerPort: 8001
+          imagePullPolicy: Always
+          env:
+            - name: DB_HOST_MONGO
+              value: "mongodb:27017"
