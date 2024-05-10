@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: msvc-customers
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: msvc-customers
+  template:
+    metadata:
+      labels:
+        app: msvc-customers
+    spec:
+      containers:
+        - image: ssalguerof/msvc-customers:main
+          name: customers
+          ports:
+            - containerPort: 8001
